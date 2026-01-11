@@ -1,0 +1,141 @@
+<UserControl x:Class="Lexus2_0.Desktop.Views.Pages.OpenTicketPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="{StaticResource BackgroundWhite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" 
+               Background="{StaticResource PrimaryBlue}" 
+               Padding="15,10">
+            <TextBlock Text="Open Ticket - Ticket History" 
+                      FontSize="18" 
+                      FontWeight="Bold" 
+                      Foreground="{StaticResource White}"
+                      FontFamily="Segoe UI"/>
+        </Border>
+        
+        <!-- Ticket History Table -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Action Buttons -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                <Button Content="Open All Ticket" 
+                       Style="{StaticResource PrimaryButton}"
+                       Click="OpenAllTicketButton_Click"
+                       Padding="15,8"
+                       MinWidth="120"
+                       Margin="0,0,10,0"/>
+                <Button Content="Delete All" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="DeleteAllButton_Click"
+                       Padding="15,8"
+                       MinWidth="100"/>
+            </StackPanel>
+            
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="TicketHistoryGrid" 
+                         AutoGenerateColumns="False"
+                         Background="{StaticResource BackgroundWhite}"
+                         Foreground="{StaticResource TextDark}"
+                         BorderBrush="{StaticResource PrimaryBlue}"
+                         GridLinesVisibility="All"
+                         HeadersVisibility="Column"
+                         RowBackground="{StaticResource BackgroundWhite}"
+                         AlternatingRowBackground="{StaticResource BackgroundLightGrey}"
+                         CanUserAddRows="False"
+                         CanUserDeleteRows="False"
+                         SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Total Ticket" Binding="{Binding TotalTicket}" Width="100"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150"/>
+                        <DataGridTextColumn Header="From" Binding="{Binding From}" Width="80"/>
+                        <DataGridTextColumn Header="To" Binding="{Binding To}" Width="80"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100"/>
+                        <DataGridTextColumn Header="QT" Binding="{Binding QT}" Width="60"/>
+                        <DataGridTextColumn Header="GN" Binding="{Binding GN}" Width="60"/>
+                        <DataGridTextColumn Header="CLS" Binding="{Binding CLS}" Width="60"/>
+                        <DataGridTextColumn Header="SL" Binding="{Binding SL}" Width="60"/>
+                        <DataGridTextColumn Header="SLOT" Binding="{Binding SLOT}" Width="80"/>
+                        <DataGridTemplateColumn Header="Web" Width="60">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding WebCount}" 
+                                              HorizontalAlignment="Center"
+                                              Foreground="{StaticResource TextDark}"
+                                              FontFamily="Segoe UI"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="App" Width="60">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AppCount}" 
+                                              HorizontalAlignment="Center"
+                                              Foreground="{StaticResource TextDark}"
+                                              FontFamily="Segoe UI"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Actions" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Open" 
+                                               Click="OpenTicketButton_Click"
+                                               Tag="{Binding}"
+                                               Padding="8,4"
+                                               Margin="2"
+                                               Style="{StaticResource PrimaryButton}"
+                                               FontSize="11"/>
+                                        <Button Content="Edit" 
+                                               Click="EditTicketButton_Click"
+                                               Tag="{Binding}"
+                                               Padding="8,4"
+                                               Margin="2"
+                                               Style="{StaticResource SecondaryButton}"
+                                               FontSize="11"/>
+                                        <Button Content="Delete" 
+                                               Click="DeleteTicketButton_Click"
+                                               Tag="{Binding}"
+                                               Padding="8,4"
+                                               Margin="2"
+                                               Style="{StaticResource SecondaryButton}"
+                                               FontSize="11"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{StaticResource PrimaryBlue}"/>
+                            <Setter Property="Foreground" Value="{StaticResource White}"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Foreground" Value="{StaticResource TextDark}"/>
+                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>
+

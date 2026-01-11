@@ -1,0 +1,234 @@
+<UserControl x:Class="Lexus2_0.Desktop.Views.BypassView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Padding="10" Background="{StaticResource LightGrey}">
+            <TextBlock Text="Bypass Menu - OTP &amp; Validation Bypass Tools" 
+                      FontSize="18" 
+                      FontWeight="Bold" 
+                      Foreground="{StaticResource TextWhite}"/>
+        </Border>
+        
+        <!-- Content Area with ScrollViewer -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="15">
+                
+                <!-- General Bypass Settings Section -->
+                <TextBlock Text="General Bypass Settings" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,0,0,10"/>
+                
+                <!-- Captcha Handling -->
+                <Border Background="{StaticResource LightGrey}" Padding="15" CornerRadius="3" Margin="0,0,0,15">
+                    <StackPanel>
+                        <CheckBox x:Name="CaptchaHandlingCheckBox" 
+                                 Content="Enable Captcha Handling" 
+                                 Foreground="{StaticResource TextWhite}"
+                                 IsChecked="True"
+                                 Checked="SettingChanged"
+                                 Unchecked="SettingChanged"/>
+                        <TextBlock Text="Automatically attempt to solve captchas during automation" 
+                                  Foreground="{StaticResource LightBlue}" 
+                                  FontSize="12" 
+                                  Margin="25,5,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Retry Limits -->
+                <Border Background="{StaticResource LightGrey}" Padding="15" CornerRadius="3" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="Retry Limit" 
+                                  Foreground="{StaticResource TextWhite}" 
+                                  FontWeight="Bold" 
+                                  Margin="0,0,0,10"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Max Attempts: " 
+                                      Foreground="{StaticResource TextWhite}" 
+                                      VerticalAlignment="Center"
+                                      Margin="0,0,10,0"/>
+                            <TextBox x:Name="RetryLimitTextBox" 
+                                    Text="5" 
+                                    Width="100" 
+                                    TextChanged="SettingChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Browser Mode -->
+                <Border Background="{StaticResource LightGrey}" Padding="15" CornerRadius="3" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="Browser Mode" 
+                                  Foreground="{StaticResource TextWhite}" 
+                                  FontWeight="Bold" 
+                                  Margin="0,0,0,10"/>
+                        <RadioButton x:Name="HeadlessRadioButton" 
+                                    Content="Headless (Background)" 
+                                    Foreground="{StaticResource TextWhite}"
+                                    IsChecked="True"
+                                    GroupName="BrowserMode"
+                                    Checked="SettingChanged"/>
+                        <RadioButton x:Name="VisibleRadioButton" 
+                                    Content="Visible (Show Browser Window)" 
+                                    Foreground="{StaticResource TextWhite}"
+                                    GroupName="BrowserMode"
+                                    Checked="SettingChanged"
+                                    Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Captcha Solver Type -->
+                <Border Background="{StaticResource LightGrey}" Padding="15" CornerRadius="3" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="Captcha Solver" 
+                                  Foreground="{StaticResource TextWhite}" 
+                                  FontWeight="Bold" 
+                                  Margin="0,0,0,10"/>
+                        <ComboBox x:Name="CaptchaSolverComboBox" 
+                                 SelectionChanged="SettingChanged">
+                            <ComboBoxItem Content="EasyOCR" IsSelected="True"/>
+                            <ComboBoxItem Content="Tesseract"/>
+                            <ComboBoxItem Content="Manual"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Session Reset -->
+                <Border Background="{StaticResource LightGrey}" Padding="15" CornerRadius="3" Margin="0,0,0,20">
+                    <StackPanel>
+                        <CheckBox x:Name="SessionResetCheckBox" 
+                                 Content="Auto Session Reset (Clear Cookies/Cache)" 
+                                 Foreground="{StaticResource TextWhite}"
+                                 Checked="SettingChanged"
+                                 Unchecked="SettingChanged"/>
+                        <TextBlock Text="Automatically clear cookies and cache before each run" 
+                                  Foreground="{StaticResource LightBlue}" 
+                                  FontSize="12" 
+                                  Margin="25,5,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Bank OTP Bypass Section -->
+                <TextBlock Text="Bank OTP Bypass" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,0,0,10"/>
+                
+                <Button Content="SBI OTP By-Pass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="SbiOtpBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="HDFC OTP By-Pass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="HdfcOtpBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- UPI App Bypass Section -->
+                <TextBlock Text="UPI App Bypass" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Bhim SBI-Upi Bypass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="BhimSbiUpiBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Freecharge Upi Bypass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="FreechargeUpiBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="PayTM OTP By-Pass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="PaytmOtpBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="NPCI BHIM Bypass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="NpciBhimBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="AXIS Bhim UPI Add/By-Pass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="AxisBhimUpiBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="PhonePe Bypass" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="PhonePeBypassButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- System Tools Section -->
+                <TextBlock Text="System Tools" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Check Token" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="CheckTokenButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="PyProxy manager" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="PyProxyManagerButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Save Button -->
+                <Button Content="Save Settings" 
+                       Style="{StaticResource PrimaryButton}"
+                       HorizontalAlignment="Left"
+                       Margin="0,20,0,0"
+                       Padding="15,8"
+                       MinWidth="250"
+                       Click="SaveSettingsButton_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

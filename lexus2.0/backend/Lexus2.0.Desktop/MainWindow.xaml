@@ -1,0 +1,350 @@
+﻿<Window x:Class="Lexus2_0.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Views="clr-namespace:Lexus2_0.Desktop.Views"
+        mc:Ignorable="d"
+        Title="LEXUS" 
+        Height="700" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundWhite}"
+        AllowsTransparency="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header with Logo and PAID Stamp -->
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBlue}" Padding="15,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- L Logo -->
+                <Border Grid.Column="0" 
+                       Width="40" 
+                       Height="40" 
+                       Background="{StaticResource White}" 
+                       CornerRadius="5"
+                       VerticalAlignment="Center">
+                    <TextBlock Text="L" 
+                              FontSize="28" 
+                              FontWeight="Bold" 
+                              Foreground="{StaticResource PrimaryBlue}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                </Border>
+                
+                <!-- LEXUS Title -->
+                <TextBlock Grid.Column="1"
+                          Text="LEXUS" 
+                      FontSize="20" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource White}"
+                          VerticalAlignment="Center"
+                          Margin="15,0,0,0"/>
+                
+                <!-- Green PAID Stamp -->
+                <Border Grid.Column="2" 
+                       Background="#4CAF50" 
+                       Padding="8,4" 
+                       CornerRadius="3"
+                       VerticalAlignment="Center">
+                    <TextBlock Text="PAID" 
+                              FontSize="12" 
+                      FontWeight="Bold" 
+                      Foreground="{StaticResource White}"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Navigation Sidebar with Expandable Menus -->
+            <Border Grid.Column="0" 
+                   Background="{StaticResource DarkBlue}" 
+                   BorderBrush="{StaticResource PrimaryBlue}" 
+                   BorderThickness="0,0,1,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="5">
+                        <!-- Ticket Menu -->
+                        <Expander x:Name="TicketExpander" 
+                                 Header="Ticket" 
+                                 IsExpanded="False"
+                                 Expanded="MenuExpander_Expanded"
+                                 Collapsed="MenuExpander_Collapsed"
+                                 Style="{StaticResource MenuExpanderStyle}"
+                                 Margin="0,2">
+                            <StackPanel Margin="15,5,5,5">
+                                <Button Content="Open Ticket" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OpenTicketMenuItem_Click"
+                                       Margin="0,2"/>
+                                <Button Content="New Ticket" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="NewTicketMenuItem_Click"
+                                       Margin="0,2"/>
+                            </StackPanel>
+                        </Expander>
+                        
+                        <!-- Data Menu -->
+                        <Expander x:Name="DataExpander" 
+                                 Header="Data" 
+                                 IsExpanded="False"
+                                 Expanded="MenuExpander_Expanded"
+                                 Collapsed="MenuExpander_Collapsed"
+                                 Style="{StaticResource MenuExpanderStyle}"
+                                 Margin="0,2">
+                            <StackPanel Margin="15,5,5,5">
+                                <Button Content="Add IRCTC ID" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="AddIrctcId"
+                                       Margin="0,2"/>
+                                <Button Content="Add Payment Option" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="AddPaymentOption"
+                                       Margin="0,2"/>
+                                <Button Content="Proxy IP Setting" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="ProxyIpSetting"
+                                       Margin="0,2"/>
+                                <Button Content="Auto login on not allowed" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="AutoLoginNotAllowed"
+                                       Margin="0,2"/>
+                                <Button Content="Station Switch On" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="StationSwitchOn"
+                                       Margin="0,2"/>
+                                <Button Content="Show Stn Switch Form" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="ShowStnSwitchForm"
+                                       Margin="0,2"/>
+                                <Button Content="Submit One Pair Per Form" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="SubmitOnePairPerForm"
+                                       Margin="0,2"/>
+                                <Button Content="Process APP HDFC_DC From JIO" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="ProcessHdfcJio"
+                                       Margin="0,2"/>
+                                <Button Content="Install Web2 Driver" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="InstallWeb2Driver"
+                                       Margin="0,2"/>
+                                <Button Content="Install RailOne Driver" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="InstallRailOneDriver"
+                                       Margin="0,2"/>
+                                <Button Content="Process HDFC_DC From IPAY" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="ProcessHdfcIpay"
+                                       Margin="0,2"/>
+                                <Button Content="Download Web Driver" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="DownloadWebDriver"
+                                       Margin="0,2"/>
+                                <Button Content="IP Login Limit Set" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="DataMenuItem_Click"
+                                       Tag="IpLoginLimit"
+                                       Margin="0,2"/>
+                            </StackPanel>
+                        </Expander>
+                        
+                        <!-- Option's Menu -->
+                        <Expander x:Name="OptionsExpander" 
+                                 Header="Option's" 
+                                 IsExpanded="False"
+                                 Expanded="MenuExpander_Expanded"
+                                 Collapsed="MenuExpander_Collapsed"
+                                 Style="{StaticResource MenuExpanderStyle}"
+                                 Margin="0,2">
+                            <StackPanel Margin="15,5,5,5">
+                                <Button Content="Backup Restore" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="BackupRestore"
+                                       Margin="0,2"/>
+                                <Button Content="Auto Fill Captcha" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="AutoFillCaptcha"
+                                       Margin="0,2"/>
+                                <Button Content="AutoSubmit Captcha After Fill" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="AutoSubmitCaptcha"
+                                       Margin="0,2"/>
+                                <Button Content="Steps Of Adv Payment" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="StepsOfAdvPayment"
+                                       Margin="0,2"/>
+                                <Button Content="Auto Close After Booking" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="AutoCloseAfterBooking"
+                                       Margin="0,2"/>
+                                <Button Content="Key Info / Version Check" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="KeyInfoVersionCheck"
+                                       Margin="0,2"/>
+                                <Button Content="Video Mode" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="VideoMode"
+                                       Margin="0,2"/>
+                                <Button Content="Show History" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="ShowHistory"
+                                       Margin="0,2"/>
+                                <Button Content="System Refresh" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="SystemRefresh"
+                                       Margin="0,2"/>
+                                <Button Content="Optimize System …" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="OptimizeSystem"
+                                       Margin="0,2"/>
+                                <Button Content="Create IRCTC ID" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="CreateIrctcId"
+                                       Margin="0,2"/>
+                                <Button Content="BHIMUPI Direct Pay" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="BhimUpiDirectPay"
+                                       Margin="0,2"/>
+                                <Button Content="Small Window" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="SmallWindow"
+                                       Margin="0,2"/>
+                                <Button Content="Pax Countdown Bypass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="PaxCountdownBypass"
+                                       Margin="0,2"/>
+                                <Button Content="Disha Login On / Off" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="DishaLogin"
+                                       Margin="0,2"/>
+                                <Button Content="Fail Issue Fix …" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="FailIssueFix"
+                                       Margin="0,2"/>
+                                <Button Content="Reset Your Lexus ID" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="OptionsMenuItem_Click"
+                                       Tag="ResetLexusId"
+                                       Margin="0,2"/>
+                            </StackPanel>
+                        </Expander>
+                        
+                        <!-- Bypass Menu -->
+                        <Expander x:Name="BypassExpander" 
+                                 Header="Bypass Menu" 
+                                 IsExpanded="False"
+                                 Expanded="MenuExpander_Expanded"
+                                 Collapsed="MenuExpander_Collapsed"
+                                 Style="{StaticResource MenuExpanderStyle}"
+                                 Margin="0,2">
+                            <StackPanel Margin="15,5,5,5">
+                                <Button Content="SBI OTP By-Pass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="SbiOtpBypass"
+                                       Margin="0,2"/>
+                                <Button Content="HDFC OTP By-Pass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="HdfcOtpBypass"
+                                       Margin="0,2"/>
+                                <Button Content="Bhim SBI-UPI Bypass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="BhimSbiUpiBypass"
+                                       Margin="0,2"/>
+                                <Button Content="Freecharge UPI Bypass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="FreechargeUpiBypass"
+                                       Margin="0,2"/>
+                                <Button Content="PayTM OTP By-Pass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="PaytmOtpBypass"
+                                       Margin="0,2"/>
+                                <Button Content="NPCI BHIM Bypass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="NpciBhimBypass"
+                                       Margin="0,2"/>
+                                <Button Content="Check Token" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="CheckToken"
+                                       Margin="0,2"/>
+                                <Button Content="AXIS Bhim UPI Add / By-Pass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="AxisBhimUpiBypass"
+                                       Margin="0,2"/>
+                                <Button Content="PhonePe Bypass" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="PhonePeBypass"
+                                       Margin="0,2"/>
+                                <Button Content="PyProxy Manager" 
+                                       Style="{StaticResource MenuItemButton}"
+                                       Click="BypassMenuItem_Click"
+                                       Tag="PyProxyManager"
+                                       Margin="0,2"/>
+                            </StackPanel>
+                        </Expander>
+                </StackPanel>
+                </ScrollViewer>
+            </Border>
+            
+            <!-- Content Panel -->
+            <ContentControl x:Name="ContentArea" 
+                          Grid.Column="1" 
+                          Margin="10"/>
+        </Grid>
+        
+        <!-- Status Bar -->
+        <Views:StatusBar Grid.Row="2" x:Name="StatusBarControl"/>
+    </Grid>
+</Window>

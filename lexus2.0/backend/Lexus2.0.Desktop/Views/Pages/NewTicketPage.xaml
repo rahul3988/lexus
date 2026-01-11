@@ -1,0 +1,698 @@
+<UserControl x:Class="Lexus2_0.Desktop.Views.Pages.NewTicketPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <Grid Background="{StaticResource BackgroundWhite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" 
+               Background="{StaticResource PrimaryBlue}" 
+               Padding="15,10">
+            <TextBlock Text="New Ticket" 
+                      FontSize="18" 
+                      FontWeight="Bold" 
+                      Foreground="{StaticResource White}"
+                      FontFamily="Segoe UI"/>
+        </Border>
+        
+        <!-- Form Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="15">
+            <StackPanel>
+                
+                <!-- Journey Details Section -->
+                <Border Background="{StaticResource BackgroundLightGrey}" 
+                       Padding="15" 
+                       CornerRadius="3" 
+                       BorderBrush="{StaticResource PrimaryBlue}"
+                       BorderThickness="1"
+                       Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Row 1 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" 
+                                  Text="From:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="FromStationComboBox" 
+                                Grid.Row="1" Grid.Column="0" 
+                                Margin="0,0,0,10" 
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"
+                                IsEditable="True"
+                                TextBoxBase.TextChanged="FromStation_TextChanged"
+                                SelectionChanged="FromStation_SelectionChanged"
+                                DropDownOpened="FromStation_DropDownOpened"
+                                PreviewKeyDown="ComboBox_PreviewKeyDown"
+                                MaxDropDownHeight="250"
+                                MinWidth="150">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontFamily="Segoe UI">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="Code"/>
+                                                <Binding Path="Name"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <TextBlock Grid.Row="0" Grid.Column="2" 
+                                  Text="Bdg Pt:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="BoardingPointComboBox" 
+                                Grid.Row="1" Grid.Column="2" 
+                                Margin="0,0,0,10" 
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"
+                                IsEditable="True"
+                                TextBoxBase.TextChanged="BoardingPoint_TextChanged"
+                                SelectionChanged="BoardingPoint_SelectionChanged"
+                                DropDownOpened="BoardingPoint_DropDownOpened"
+                                PreviewKeyDown="ComboBox_PreviewKeyDown"
+                                MaxDropDownHeight="250"
+                                MinWidth="150">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontFamily="Segoe UI">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="Code"/>
+                                                <Binding Path="Name"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <TextBlock Grid.Row="0" Grid.Column="4" 
+                                  Text="Class:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="ClassComboBox" 
+                                 Grid.Row="1" Grid.Column="4" 
+                                 Margin="0,0,0,10"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="120"
+                                 MaxDropDownHeight="200">
+                            <ComboBoxItem Content="Select Class"/>
+                            <ComboBoxItem Content="SL" IsSelected="True"/>
+                            <ComboBoxItem Content="3A"/>
+                            <ComboBoxItem Content="2A"/>
+                            <ComboBoxItem Content="1A"/>
+                            <ComboBoxItem Content="CC"/>
+                            <ComboBoxItem Content="2S"/>
+                        </ComboBox>
+                        
+                        <!-- Row 2 -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" 
+                                  Text="To:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="ToStationComboBox" 
+                                Grid.Row="3" Grid.Column="0" 
+                                Margin="0,0,0,10" 
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"
+                                IsEditable="True"
+                                TextBoxBase.TextChanged="ToStation_TextChanged"
+                                SelectionChanged="ToStation_SelectionChanged"
+                                DropDownOpened="ToStation_DropDownOpened"
+                                PreviewKeyDown="ComboBox_PreviewKeyDown"
+                                MaxDropDownHeight="250"
+                                MinWidth="150">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontFamily="Segoe UI">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="Code"/>
+                                                <Binding Path="Name"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="2" 
+                                  Text="Train No:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <TextBox x:Name="TrainNoTextBox" 
+                                Grid.Row="3" Grid.Column="2" 
+                                Margin="0,0,0,10" 
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="4" 
+                                  Text="Quota:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="QuotaComboBox" 
+                                 Grid.Row="3" Grid.Column="4" 
+                                 Margin="0,0,0,10"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="120"
+                                 MaxDropDownHeight="200">
+                            <ComboBoxItem Content="General" IsSelected="True"/>
+                            <ComboBoxItem Content="Ladies"/>
+                            <ComboBoxItem Content="Tatkal"/>
+                            <ComboBoxItem Content="Premium Tatkal"/>
+                        </ComboBox>
+                        
+                        <!-- Row 3 -->
+                        <TextBlock Grid.Row="2" Grid.Column="6" 
+                                  Text="Date:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <DatePicker x:Name="JourneyDatePicker" 
+                                   Grid.Row="3" Grid.Column="6" 
+                                   Margin="0,0,0,10"
+                                   Background="{StaticResource White}"
+                                   Foreground="{StaticResource TextDark}"
+                                   FontFamily="Segoe UI"
+                                   BorderBrush="{StaticResource PrimaryBlue}"
+                                   SelectedDateFormat="Short"/>
+                        
+                        <!-- Row 4 - Train Type and Search -->
+                        <TextBlock Grid.Row="0" Grid.Column="6" 
+                                  Text="Train Type:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="TrainTypeComboBox" 
+                                 Grid.Row="1" Grid.Column="6" 
+                                 Margin="0,0,0,10"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="140"
+                                 MaxDropDownHeight="200">
+                            <ComboBoxItem Content="Select Train Type"/>
+                            <ComboBoxItem Content="Express"/>
+                            <ComboBoxItem Content="Superfast"/>
+                            <ComboBoxItem Content="Rajdhani"/>
+                            <ComboBoxItem Content="Shatabdi"/>
+                            <ComboBoxItem Content="Duronto"/>
+                        </ComboBox>
+                        
+                        <Button Grid.Row="2" Grid.Column="6"
+                               Content="Search"
+                               Click="SearchButton_Click"
+                               Style="{StaticResource PrimaryButton}"
+                               Padding="10,6"
+                               Margin="0,5,0,0"
+                               HorizontalAlignment="Left"/>
+                    </Grid>
+                </Border>
+                
+                <!-- Passenger Details Section -->
+                <TextBlock Text="Passenger Details" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource PrimaryBlue}"
+                          FontFamily="Segoe UI"
+                          Margin="0,0,0,10"/>
+                
+                <Border Background="{StaticResource BackgroundLightGrey}" 
+                       Padding="15" 
+                       CornerRadius="3" 
+                       BorderBrush="{StaticResource PrimaryBlue}"
+                       BorderThickness="1"
+                       Margin="0,0,0,15">
+                    <DataGrid x:Name="PassengerDataGrid" 
+                             AutoGenerateColumns="False"
+                             CanUserAddRows="True"
+                             CanUserDeleteRows="True"
+                             Background="{StaticResource White}"
+                             Foreground="{StaticResource TextDark}"
+                             BorderBrush="{StaticResource PrimaryBlue}"
+                             GridLinesVisibility="All"
+                             HeadersVisibility="Column"
+                             RowBackground="{StaticResource BackgroundWhite}"
+                             AlternatingRowBackground="{StaticResource BackgroundLightGrey}"
+                             MinHeight="200"
+                             FontFamily="Segoe UI">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="SNo" Binding="{Binding SNo}" Width="50" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="60"/>
+                            <DataGridTemplateColumn Header="Sex" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" 
+                                                 SelectedValuePath="Content"
+                                                 Background="{StaticResource White}"
+                                                 FontSize="11"
+                                                 Padding="4,2"
+                                                 MinWidth="70">
+                                            <ComboBoxItem Content="Select"/>
+                                            <ComboBoxItem Content="Male"/>
+                                            <ComboBoxItem Content="Female"/>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Berth" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedValue="{Binding Seat, UpdateSourceTrigger=PropertyChanged}" 
+                                                 SelectedValuePath="Content"
+                                                 Background="{StaticResource White}"
+                                                 FontSize="11"
+                                                 Padding="4,2"
+                                                 MinWidth="90">
+                                            <ComboBoxItem Content="Choose"/>
+                                            <ComboBoxItem Content="Lower"/>
+                                            <ComboBoxItem Content="Middle"/>
+                                            <ComboBoxItem Content="Upper"/>
+                                            <ComboBoxItem Content="Side Lower"/>
+                                            <ComboBoxItem Content="Side Upper"/>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Food" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedValue="{Binding Food, UpdateSourceTrigger=PropertyChanged}" 
+                                                 SelectedValuePath="Content"
+                                                 Background="{StaticResource White}"
+                                                 FontSize="11"
+                                                 Padding="4,2"
+                                                 MinWidth="70">
+                                            <ComboBoxItem Content="No Food"/>
+                                            <ComboBoxItem Content="Veg"/>
+                                            <ComboBoxItem Content="Non-Veg"/>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Nationality" Binding="{Binding Nationality}" Width="100"/>
+                            <DataGridTextColumn Header="Passport" Binding="{Binding Passport}" Width="100"/>
+                            <DataGridTemplateColumn Header="Child Senior Bed" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding ChildSeniorBed}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource PrimaryBlue}"/>
+                                <Setter Property="Foreground" Value="{StaticResource White}"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Border>
+                
+                <!-- Contact & Payment Section -->
+                <Border Background="{StaticResource BackgroundLightGrey}" 
+                       Padding="15" 
+                       CornerRadius="3" 
+                       BorderBrush="{StaticResource PrimaryBlue}"
+                       BorderThickness="1"
+                       Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Mobile -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" 
+                                  Text="Mobile:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="+91" 
+                                      VerticalAlignment="Center" 
+                                      Margin="0,0,5,0"
+                                      Foreground="{StaticResource TextDark}"
+                                      FontFamily="Segoe UI"/>
+                            <TextBox x:Name="MobileNoTextBox" 
+                                    Grid.Column="1"
+                                    Background="{StaticResource White}"
+                                    Foreground="{StaticResource TextDark}" 
+                                    Padding="8,6"
+                                    FontFamily="Segoe UI"
+                                    BorderBrush="{StaticResource PrimaryBlue}"
+                                    BorderThickness="1"/>
+                        </Grid>
+                        
+                        <!-- Get Fare Button -->
+                        <Button Grid.Row="1" Grid.Column="2"
+                               Content="Get Fare"
+                               Click="GetFareButton_Click"
+                               Style="{StaticResource PrimaryButton}"
+                               Padding="12,6"
+                               MinWidth="100"
+                               HorizontalAlignment="Left"/>
+                        
+                        <!-- Ticket Slot -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" 
+                                  Text="Ticket Slot:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="TicketSlotComboBox" 
+                                 Grid.Row="3" Grid.Column="0" 
+                                 Margin="0,0,0,15"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="130"
+                                 MaxDropDownHeight="200">
+                            <ComboBoxItem Content="Select_Auto Slot"/>
+                            <ComboBoxItem Content="Slot-1"/>
+                            <ComboBoxItem Content="Slot-2"/>
+                            <ComboBoxItem Content="Slot-3"/>
+                        </ComboBox>
+                        
+                        <!-- IRCTC ID -->
+                        <TextBlock Grid.Row="2" Grid.Column="2" 
+                                  Text="Select_Auto IRCTC-ID:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="IrctcIdComboBox" 
+                                 Grid.Row="3" Grid.Column="2" 
+                                 Margin="0,0,0,15"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="150"
+                                 MaxDropDownHeight="200"
+                                 DisplayMemberPath="IrctcId"/>
+                        
+                        <!-- Travel Insurance & Confirm Berths -->
+                        <CheckBox x:Name="TravelInsuranceCheckBox" 
+                                 Grid.Row="4" Grid.Column="0"
+                                 Content="Travel Insurance" 
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 Margin="0,0,0,10"/>
+                        <CheckBox x:Name="ConfirmBerthsCheckBox" 
+                                 Grid.Row="4" Grid.Column="2"
+                                 Content="Book only if confirm berths allotted." 
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 Margin="0,0,0,10"/>
+                        
+                        <!-- Payment Method -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" 
+                                  Text="Select Payment Method:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="PaymentMethodComboBox" 
+                                 Grid.Row="6" Grid.Column="0" 
+                                 Margin="0,0,0,15"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="150"
+                                 MaxDropDownHeight="200">
+                            <ComboBoxItem Content="IRCTC" IsSelected="True"/>
+                            <ComboBoxItem Content="UPI"/>
+                            <ComboBoxItem Content="Credit Card"/>
+                            <ComboBoxItem Content="Debit Card"/>
+                        </ComboBox>
+                        
+                        <!-- IRCTC ID (separate field) -->
+                        <TextBlock Grid.Row="5" Grid.Column="2" 
+                                  Text="IRCTC ID:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <TextBox x:Name="IrctcIdTextBox" 
+                                Grid.Row="6" Grid.Column="2" 
+                                Margin="0,0,0,15"
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"/>
+                    </Grid>
+                </Border>
+                
+                <!-- Fare & Banks Section -->
+                <Border Background="{StaticResource BackgroundLightGrey}" 
+                       Padding="15" 
+                       CornerRadius="3" 
+                       BorderBrush="{StaticResource PrimaryBlue}"
+                       BorderThickness="1"
+                       Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Fare Display -->
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                  x:Name="FareTextBlock" 
+                                  Text="Fare: Base" 
+                                  FontSize="14" 
+                                  FontWeight="Bold"
+                                  Foreground="{StaticResource PrimaryBlue}"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,10"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                  Text="Getways:" 
+                                  Foreground="{StaticResource TextDark}"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                  Text="Click Here for Availability" 
+                                  Foreground="{StaticResource PrimaryBlue}"
+                                  FontFamily="Segoe UI"
+                                  TextDecorations="Underline"
+                                  Cursor="Hand"
+                                  MouseLeftButtonDown="AvailabilityLink_Click"/>
+                        
+                        <!-- Prior Bank -->
+                        <TextBlock Grid.Row="0" Grid.Column="2" 
+                                  Text="Prior Bank:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="PriorBankComboBox" 
+                                 Grid.Row="1" Grid.Column="2" 
+                                 Margin="0,0,0,10"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="150"
+                                 MaxDropDownHeight="200"
+                                 DisplayMemberPath="Name">
+                            <ComboBoxItem Content="Select Your Bank"/>
+                        </ComboBox>
+                        
+                        <!-- Backup Bank -->
+                        <TextBlock Grid.Row="4" Grid.Column="2" 
+                                  Text="BackUp Bank:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  Margin="0,0,0,5"/>
+                        <ComboBox x:Name="BackupBankComboBox" 
+                                 Grid.Row="5" Grid.Column="2" 
+                                 Margin="0,0,0,10"
+                                 Background="{StaticResource White}"
+                                 Foreground="{StaticResource TextDark}"
+                                 FontFamily="Segoe UI"
+                                 BorderBrush="{StaticResource PrimaryBlue}"
+                                 BorderThickness="1"
+                                 Padding="8,6"
+                                 MinWidth="150"
+                                 MaxDropDownHeight="200"
+                                 DisplayMemberPath="Name">
+                            <ComboBoxItem Content="No Alternate Bank" IsSelected="True"/>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                
+                <!-- Save Name Section -->
+                <Border Background="{StaticResource BackgroundLightGrey}" 
+                       Padding="15" 
+                       CornerRadius="3" 
+                       BorderBrush="{StaticResource PrimaryBlue}"
+                       BorderThickness="1"
+                       Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                  Text="Name:" 
+                                  Foreground="{StaticResource TextDark}" 
+                                  FontWeight="SemiBold"
+                                  FontFamily="Segoe UI"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,10,0"/>
+                        <TextBox x:Name="SaveNameTextBox" 
+                                Grid.Column="1"
+                                Background="{StaticResource White}"
+                                Foreground="{StaticResource TextDark}" 
+                                Padding="8,6"
+                                FontFamily="Segoe UI"
+                                BorderBrush="{StaticResource PrimaryBlue}"
+                                BorderThickness="1"/>
+                    </Grid>
+                </Border>
+                
+                <!-- Warning Message -->
+                <TextBlock Text="Please Save Data Carefully ... Avoid Mistake in Names and Age" 
+                          FontSize="12" 
+                          Foreground="{StaticResource ErrorRed}"
+                          FontFamily="Segoe UI"
+                          FontStyle="Italic"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,15"/>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Bottom Action Buttons -->
+        <Border Grid.Row="2" 
+               Background="{StaticResource BackgroundLightGrey}" 
+               Padding="15,10"
+               BorderBrush="{StaticResource PrimaryBlue}"
+               BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Right">
+                <Button Content="Save" 
+                       Style="{StaticResource PrimaryButton}"
+                       Click="SaveButton_Click"
+                       Margin="0,0,10,0"
+                       Padding="15,8"
+                       MinWidth="100"/>
+                <Button Content="Cancel" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="CancelButton_Click"
+                       Padding="15,8"
+                       MinWidth="100"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

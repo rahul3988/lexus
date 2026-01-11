@@ -1,0 +1,182 @@
+<UserControl x:Class="Lexus2_0.Desktop.Views.DataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Padding="10" Background="{StaticResource LightGrey}">
+            <TextBlock Text="Data Menu - Configuration &amp; Settings" 
+                      FontSize="18" 
+                      FontWeight="Bold" 
+                      Foreground="{StaticResource TextWhite}"/>
+        </Border>
+        
+        <!-- Menu Items -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="15">
+                
+                <!-- Identity & Account Management Section -->
+                <TextBlock Text="Identity &amp; Account Management" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,0,0,10"/>
+                
+                <Button Content="Add IRCTC ID" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="AddIrctcIdButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Payment Configuration Section -->
+                <TextBlock Text="Payment Configuration" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Add Payment Option" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="AddPaymentOptionButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Process APP HDFC_DC From JIO" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="ProcessHdfcJioButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Process HDFC_DC From IPAY" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="ProcessHdfcIpayButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Network & Proxy Section -->
+                <TextBlock Text="Network &amp; Proxy" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Proxy IP Setting" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="ProxyIpSettingButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Ip Login Limit Set" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="IpLoginLimitButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Login & Authentication Section -->
+                <TextBlock Text="Login &amp; Authentication" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Auto login on not allowed" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="AutoLoginNotAllowedButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Station Configuration Section -->
+                <TextBlock Text="Station Configuration" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Station Switch On" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="StationSwitchOnButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Show Stn Switch Form" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="ShowStnSwitchFormButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Form Submission Section -->
+                <TextBlock Text="Form Submission" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Submit One Pair Per Form" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="SubmitOnePairPerFormButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <!-- Driver Installation Section -->
+                <TextBlock Text="Driver Installation" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="{StaticResource LightBlue}"
+                          Margin="0,20,0,10"/>
+                
+                <Button Content="Install Web2 Driver" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="InstallWeb2DriverButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Install RailOne Driver" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="InstallRailOneDriverButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+                <Button Content="Download Web Driver" 
+                       Style="{StaticResource SecondaryButton}"
+                       Click="DownloadWebDriverButton_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"
+                       Padding="15,8"
+                       MinWidth="250"/>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

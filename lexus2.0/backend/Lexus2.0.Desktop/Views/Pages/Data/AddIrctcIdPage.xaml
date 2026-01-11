@@ -1,0 +1,56 @@
+<UserControl x:Class="Lexus2_0.Desktop.Views.Pages.Data.AddIrctcIdPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="{StaticResource BackgroundWhite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBlue}" Padding="15,10">
+            <TextBlock Text="Add IRCTC ID" FontSize="18" FontWeight="Bold" Foreground="{StaticResource White}" FontFamily="Segoe UI"/>
+        </Border>
+        
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="15">
+            <StackPanel>
+                <Border Background="{StaticResource BackgroundLightGrey}" Padding="15" CornerRadius="3" BorderBrush="{StaticResource PrimaryBlue}" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="IRCTC ID:" Foreground="{StaticResource TextDark}" FontWeight="SemiBold" FontFamily="Segoe UI" Margin="0,0,0,5"/>
+                        <TextBox x:Name="IrctcIdTextBox" Background="{StaticResource White}" Foreground="{StaticResource TextDark}" Padding="8,6" FontFamily="Segoe UI" BorderBrush="{StaticResource PrimaryBlue}" BorderThickness="1" Margin="0,0,0,15"/>
+                        
+                        <TextBlock Text="Password:" Foreground="{StaticResource TextDark}" FontWeight="SemiBold" FontFamily="Segoe UI" Margin="0,0,0,5"/>
+                        <PasswordBox x:Name="PasswordBox" Background="{StaticResource White}" Padding="8,6" FontFamily="Segoe UI" BorderBrush="{StaticResource PrimaryBlue}" BorderThickness="1" Margin="0,0,0,15"/>
+                        
+                        <TextBlock Text="Mobile Number:" Foreground="{StaticResource TextDark}" FontWeight="SemiBold" FontFamily="Segoe UI" Margin="0,0,0,5"/>
+                        <TextBox x:Name="MobileTextBox" Background="{StaticResource White}" Foreground="{StaticResource TextDark}" Padding="8,6" FontFamily="Segoe UI" BorderBrush="{StaticResource PrimaryBlue}" BorderThickness="1" Margin="0,0,0,15"/>
+                        
+                        <Button Content="Add IRCTC ID" Style="{StaticResource PrimaryButton}" Click="AddButton_Click" HorizontalAlignment="Left" Padding="15,8" MinWidth="150"/>
+                    </StackPanel>
+                </Border>
+                
+                <TextBlock Text="Existing IRCTC IDs" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryBlue}" FontFamily="Segoe UI" Margin="0,20,0,10"/>
+                <DataGrid x:Name="IrctcIdsGrid" AutoGenerateColumns="False" Background="{StaticResource White}" Foreground="{StaticResource TextDark}" BorderBrush="{StaticResource PrimaryBlue}" GridLinesVisibility="All" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" FontFamily="Segoe UI">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="IRCTC ID" Binding="{Binding Id}" Width="*"/>
+                        <DataGridTextColumn Header="Mobile" Binding="{Binding Mobile}" Width="150"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{StaticResource PrimaryBlue}"/>
+                            <Setter Property="Foreground" Value="{StaticResource White}"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
+
